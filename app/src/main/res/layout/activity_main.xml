@@ -25,7 +25,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabBar"
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabTextColor="@color/purple_200"
@@ -79,6 +79,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
