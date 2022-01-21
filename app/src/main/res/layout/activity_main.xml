@@ -28,9 +28,9 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@color/purple_200"
-        app:tabSelectedTextColor="@color/purple_700"
-        app:tabIndicatorColor="@color/purple_700"
+        app:tabTextColor="@color/grey_dark"
+        app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorColor="@color/grey_dark"
         app:tabIndicatorHeight="3dp"
         app:tabMode="scrollable">
 
@@ -81,7 +81,8 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/fragContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="SpeakableTextPresentCheck">
 
     </androidx.viewpager.widget.ViewPager>
 
