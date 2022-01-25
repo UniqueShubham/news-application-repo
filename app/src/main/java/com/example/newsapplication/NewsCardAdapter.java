@@ -1,5 +1,6 @@
 package com.example.newsapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class NewsCardAdapter extends RecyclerView.Adapter<NewsCardAdapter.ViewHolder> {
 
     ArrayList<NewsModel> newsList;
-    ItemClicked activity;
+    Context context;
 
     public interface ItemClicked
     {
@@ -27,9 +28,9 @@ public class NewsCardAdapter extends RecyclerView.Adapter<NewsCardAdapter.ViewHo
         void startActivity(Intent intent);
     }
 
-    public NewsCardAdapter(ArrayList<NewsModel> newsList, ItemClicked activity) {
+    public NewsCardAdapter(ArrayList<NewsModel> newsList, Context context) {
         this.newsList = newsList;
-        this.activity = activity;
+        this.context = context;
     }
 
     @NonNull
@@ -43,20 +44,21 @@ public class NewsCardAdapter extends RecyclerView.Adapter<NewsCardAdapter.ViewHo
     public void onBindViewHolder(@NonNull NewsCardAdapter.ViewHolder holder, int position) {
 
         holder.cvNews.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
-            /*    Intent intent = new Intent(activity, webview.class);
-                intent.putExtra("url", newsList.get(position).getUrl());
-                activity.startActivity(intent);
-             */
+                Intent intent = new Intent(context, webview.class);
+                intent.putExtra("url", newsList.get(holder.getAdapterPosition()).getUrl());
+                context.startActivity(intent);
+
             }
         });
 
         holder.tvAuthor.setText("Author: " + newsList.get(position).getAuthor());
         holder.tvDesc.setText(newsList.get(position).getDescription());
-        holder.tvTime.setText(newsList.get(position).getPublishedAt());
+        holder.tvTime.setText("Published at: " + newsList.get(position).getPublishedAt());
         holder.tvTitle.setText(newsList.get(position).getTitle());
+        Glide.with(context).load(newsList.get(position).getUrlToImage()).into(holder.ivPic);
+
     }
 
     @Override
