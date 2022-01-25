@@ -2,6 +2,7 @@ package com.example.newsapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,11 @@ public class NewsCardAdapter extends RecyclerView.Adapter<NewsCardAdapter.ViewHo
         holder.cvNews.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, webview.class);
-                intent.putExtra("url", newsList.get(holder.getAdapterPosition()).getUrl());
-                context.startActivity(intent);
 
+                String url = newsList.get(holder.getAdapterPosition()).getUrl();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                context.startActivity(i);
             }
         });
 
