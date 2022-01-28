@@ -1,10 +1,14 @@
 package com.example.newsapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -15,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolBar;
     ViewPager viewPager;
     String api = "9c3a87544fd840ba990d54e3e5fa6412";
-    
+    ImageView ivMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +36,52 @@ public class MainActivity extends AppCompatActivity {
         science = findViewById(R.id.science);
         entertainment = findViewById(R.id.entertainment);
         technology = findViewById(R.id.technology);
+        ivMode = findViewById(R.id.ivMode);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        final boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
 
         viewPager = findViewById(R.id.fragContainer);
         PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), 6);
         viewPager.setAdapter(pageAdapter);
 
+        if (isDarkModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            ivMode.setImageResource(R.drawable.light);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            ivMode.setImageResource(R.drawable.dark);
+        }
+        ivMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // When user taps the enable/disable dark mode button
+                if (isDarkModeOn==true) {
+
+                    // if dark mode is on it will turn it off
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+                    editor.putBoolean("isDarkModeOn", false);
+                    editor.apply();
+
+                    ivMode.setImageResource(R.drawable.dark);
+                }
+                else {
+
+                    // if dark mode is of it will turn it on
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+                    // it will set isDarkModeOn boolean to true
+                    editor.putBoolean("isDarkModeOn", true);
+                    editor.apply();
+
+                    ivMode.setImageResource(R.drawable.light);
+                }
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }
+        });
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -56,5 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 }

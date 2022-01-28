@@ -10,17 +10,35 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:text="News Feed" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="News Feed"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivMode"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="180dp"
+                android:clickable="true"
+                android:contentDescription="Enable dark Mode"
+                app:srcCompat="@drawable/dark">
+
+            </ImageView>
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -28,9 +46,6 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@color/grey_dark"
-        app:tabSelectedTextColor="@color/black"
-        app:tabIndicatorColor="@color/grey_dark"
         app:tabIndicatorHeight="3dp"
         app:tabMode="scrollable">
 
@@ -38,43 +53,37 @@
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HOME">
-        </com.google.android.material.tabs.TabItem>
+            android:text="HOME"></com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/sports"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SPORTS">
-        </com.google.android.material.tabs.TabItem>
+            android:text="SPORTS"></com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HEALTH">
-        </com.google.android.material.tabs.TabItem>
+            android:text="HEALTH"></com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/science"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SCIENCE">
-        </com.google.android.material.tabs.TabItem>
+            android:text="SCIENCE"></com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/entertainment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ENTERTAINMENT">
-        </com.google.android.material.tabs.TabItem>
+            android:text="ENTERTAINMENT"></com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/technology"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TECHNOLOGY">
-        </com.google.android.material.tabs.TabItem>
+            android:text="TECHNOLOGY"></com.google.android.material.tabs.TabItem>
 
     </com.google.android.material.tabs.TabLayout>
 
